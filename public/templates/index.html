@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Magnament</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Product Magnament</h1>
+    </header>
+    <main>
+        <section id="product-list">
+            <h2>Product List</h2>
+            <ul>
+            </ul>
+        </section>
+        <section id="add-product">
+            <h2>Add New Product</h2>
+            <form action="/productos" method="POST" id="producto-form">
+            <label for="nombre">Nombre:</label>    
+            <input name="nombre" required>
+            <br>
+            <label for="descripcion">Descripcion:</label>
+            <input name="descripcion" required>
+            <br>
+            <label for="cantidad">Cantidad:</label>
+            <input name="cantidad" type="number">
+            <br>
+            <label for="precio">Precio:</label>
+            <input name="precio" type="number">
+            <br>
+            <label><input name="activo" type="checkbox" value="true" checked> Activo</label>
+            <br>
+            <button type="submit">Guardar</button>
+            </form>
+        </section>
+        <section id="viewer">
+        <h2>Ver producto</h2>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>ID</th><th>Nombre</th><th>Precio</th><th>Descripción</th><th>Cantidad</th><th>Activo</th>
+            </tr>
+            </thead>
+            <tbody id="producto-tabla"></tbody>
+        </table>
+        <div style="margin-top:8px;">
+            <button id="prev">⬅️</button>
+            <button id="next">➡️</button>
+            <button id="guardar">💾</button>
+            <button id="eliminar">🗑️</button>
+        </div>
+        </section>
+
+    </main>
+    <script src="../scripts/script.js"></script>
+</body>
+</html>
