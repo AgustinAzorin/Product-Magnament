@@ -2,9 +2,10 @@
 const express = require('express');
 const router = express.Router();
 const { Producto } = require('../models'); // importás tu modelo Sequelize
+const validarProducto = require("../utils/middleware.js").validarProducto;
 
 // Crear un producto desde un formulario HTML o JSON
-router.post('/', async (req, res) => {
+router.post('/', validarProducto, async (req, res) => {
   try {
     console.log('CT:', req.headers['content-type'], 'BODY:', req.body);
     await Producto.create(req.body);
@@ -13,7 +14,7 @@ router.post('/', async (req, res) => {
     console.error(err);
     res.status(500).send('Error al crear el producto');
   }
-});
+}); 
 router.get('/', async (req, res) => {
   const productos = await Producto.findAll();
   res.json(productos);
@@ -36,7 +37,7 @@ router.delete('/:id', async (req, res) => {
   const p = await Producto.findByPk(req.params.id);
   if (!p) return res.status(404).json({ error: 'No encontrado' });
   await p.destroy(req.body);
-  res.json({ message: 'Producto eliminado' });
+  res.status(200).json({ message: 'Producto eliminado' });
 });
 
 
